@@ -8,13 +8,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/itamar")
 public class GreetingController {
-	
+
 	private static final String template = "Hello, %s!";
+	private static final String message = "You can have a better greeting.. use //greeting in the uri";
 	private final AtomicLong counter = new AtomicLong();
+
+	@RequestMapping({ "/greeting", "/metoo" })
+	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	
-	@RequestMapping("/greeting")
-	public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+	@RequestMapping("/")
+	public Greeting greetingAgain() String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
+
 }
