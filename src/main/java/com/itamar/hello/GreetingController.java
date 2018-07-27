@@ -18,10 +18,10 @@ public class GreetingController {
 	@RequestMapping({ "/greeting", "/metoo" })
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
+	}
 	
 	@RequestMapping("/")
-	public Greeting greetingAgain() String name) {
+	public Greeting greetingAgain() {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
-
 }
